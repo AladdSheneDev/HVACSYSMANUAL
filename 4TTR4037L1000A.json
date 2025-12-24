@@ -67,42 +67,49 @@
     },
     "userDiagnosisWizard": {
         "start": {
-            "message": "Let’s figure out what your AC is doing. Answer honestly. Lying only hurts the AC.",
-            "question": "Is the outdoor unit doing ANYTHING?",
+            "message": "Let’s figure out what your AC is doing.",
+            "Direction": "Go out side to your Trane Unit.",
+            "question": "When you try to start it what happenes?",
             "options": {
-                "nothing_at_all": "no_power",
-                "fan_only": "fan_only",
-                "fan_and_compressor": "running_but_not_cooling",
-                "clicking_or_humming": "strange_noises"
+                "Nothing Happens.": "no_power",
+                "Only the fan turns on.": "fan_only",
+                "On but is not cooling.": "running_but_not_cooling",
+                "Making strange noises.": "strange_noises"
             }
         },
         "no_power": {
-            "message": "The outdoor unit is completely silent.",
+            "message": "The outdoor unit is completely silent, or power offline.",
             "steps": [
                 {
-                    "question": "Is your thermostat set to COOL and below room temperature?",
+                    "question": "Is your thermostat set to COOL and below outside temperature?",
+                    "action-image": "Someone setting ther thermostat",
                     "yes": 2,
                     "no": {
                         "action": "Set thermostat correctly and wait 5 minutes",
-                        "end": true
+                        "Solved?": "Did this solve your problem?",
+                        "Not Solved": "2"
                     }
                 },
                 {
                     "question": "Is the breaker labeled AC or HVAC tripped?",
                     "yes": {
                         "action": "Reset breaker ONCE. If it trips again, stop.",
-                        "result": "Likely electrical issue. Call for service."
+                        "action-image": "Someone reseting the breaker",
+                        "result": "Requires lisened matinice. Call your electriction for help."
                     },
                     "no": 3
                 },
                 {
                     "question": "Is the outdoor disconnect switch ON?",
+                    "message": "An outdoor disconnect switch is a weather-rated safety device mounted near HVAC or electrical equipment that lets you cut power instantly for servicing, repairs, or when something decides to go very wrong.",
+                    "image": "An image or .gif of the outdoor disconnect switch",
                     "yes": {
                         "result": "Unit has power but won’t start. Likely control or internal issue.",
                         "recommendation": "Call for service"
                     },
                     "no": {
                         "action": "Turn it ON",
+                        "action-image": "Some one turning on the outdoor disconnect switch.",
                         "note": "If it still does nothing, call for service"
                     }
                 }
