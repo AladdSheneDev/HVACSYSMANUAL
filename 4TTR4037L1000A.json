@@ -70,7 +70,138 @@
     }
   },
 
-  // Diagosis here
+  "userDiagnosisWizard": {
+  "start": {
+    "message": "Let’s figure out what your AC is doing. Answer honestly. Lying only hurts the AC.",
+    "question": "Is the outdoor unit doing ANYTHING?",
+    "options": {
+      "nothing_at_all": "no_power",
+      "fan_only": "fan_only",
+      "fan_and_compressor": "running_but_not_cooling",
+      "clicking_or_humming": "strange_noises"
+    }
+  },
+
+  "no_power": {
+    "message": "The outdoor unit is completely silent.",
+    "steps": [
+      {
+        "question": "Is your thermostat set to COOL and below room temperature?",
+        "yes": 2,
+        "no": {
+          "action": "Set thermostat correctly and wait 5 minutes",
+          "end": true
+        }
+      },
+      {
+        "question": "Is the breaker labeled AC or HVAC tripped?",
+        "yes": {
+          "action": "Reset breaker ONCE. If it trips again, stop.",
+          "result": "Likely electrical issue. Call for service."
+        },
+        "no": 3
+      },
+      {
+        "question": "Is the outdoor disconnect switch ON?",
+        "yes": {
+          "result": "Unit has power but won’t start. Likely control or internal issue.",
+          "recommendation": "Call for service"
+        },
+        "no": {
+          "action": "Turn it ON",
+          "note": "If it still does nothing, call for service"
+        }
+      }
+    ]
+  },
+
+  "fan_only": {
+    "message": "The outdoor fan runs, but the AC is not cooling.",
+    "steps": [
+      {
+        "question": "Is the air coming from vents inside warm or room temperature?",
+        "yes": 2,
+        "no": {
+          "result": "Cooling works intermittently",
+          "recommendation": "Monitor system"
+        }
+      },
+      {
+        "question": "Do you hear a loud hum or buzzing from the outdoor unit?",
+        "yes": {
+          "result": "Compressor is trying but failing",
+          "danger": "Do NOT leave it running",
+          "recommendation": "Shut system off and call service"
+        },
+        "no": {
+          "result": "Compressor likely not starting",
+          "recommendation": "Service required"
+        }
+      }
+    ]
+  },
+
+  "running_but_not_cooling": {
+    "message": "The unit runs but the house is still hot. Rude.",
+    "steps": [
+      {
+        "question": "Is airflow from vents weak?",
+        "yes": {
+          "action": "Check air filter. Replace if dirty.",
+          "next": 2
+        },
+        "no": 2
+      },
+      {
+        "question": "Is ice visible on indoor or outdoor pipes?",
+        "yes": {
+          "action": "Turn system OFF and let it thaw completely",
+          "result": "Likely airflow or refrigerant issue",
+          "recommendation": "Call for service"
+        },
+        "no": 3
+      },
+      {
+        "question": "Is the outdoor unit very dirty or blocked by plants?",
+        "yes": {
+          "action": "Clear debris and gently rinse coil",
+          "note": "Do NOT use pressure washer",
+          "end": true
+        },
+        "no": {
+          "result": "System likely low on refrigerant or internally restricted",
+          "recommendation": "Professional service required"
+        }
+      }
+    ]
+  },
+
+  "strange_noises": {
+    "message": "Your AC is making sounds it should not be making.",
+    "steps": [
+      {
+        "question": "Is it clicking repeatedly every few minutes?",
+        "yes": {
+          "result": "System is trying to start and failing",
+          "recommendation": "Turn OFF and call service"
+        },
+        "no": 2
+      },
+      {
+        "question": "Is it humming loudly without starting?",
+        "yes": {
+          "danger": "This can destroy the compressor",
+          "action": "Turn OFF immediately",
+          "recommendation": "Service required"
+        },
+        "no": {
+          "result": "Unidentified noise",
+          "recommendation": "Inspection needed"
+        }
+      }
+    ]
+  }
+}
 
     "no_power": {
       "symptom": "Compressor and outdoor fan won't start",
