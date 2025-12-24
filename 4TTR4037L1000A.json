@@ -1,893 +1,869 @@
 {
-  "unitInformation": {
-    "modelNumber": "4TTR4037L1000A",
-    "series": "4TTR4",
-    "manufacturer": "Trane",
-    "systemType": "Split-System Air Conditioner Condensing Unit",
-    "stage": "Single-Stage",
-    "coolingCapacity": "3 Ton",
-    "nominalBTU": "37000 BTU",
-    "refrigerant": "R-410A",
-    "compressorType": "Scroll Compressor",
-    "compressorOil": "POE (Polyolester Oil)",
-    "operatingPressures": "50-70% higher than R-22 systems",
-    "dimensions": {
-      "height": "33 in",
-      "depth": "30 in",
-      "width": "33 in",
-      "weight": "156 lbs"
+    "unitInformation": {
+        "modelNumber": "4TTR4037L1000A",
+        "series": "4TTR4",
+        "manufacturer": "Trane",
+        "systemType": "Split-System Air Conditioner Condensing Unit",
+        "stage": "Single-Stage",
+        "coolingCapacity": "3 Ton",
+        "nominalBTU": "37000 BTU",
+        "refrigerant": "R-410A",
+        "compressorType": "Scroll Compressor",
+        "compressorOil": "POE (Polyolester Oil)",
+        "operatingPressures": "50-70% higher than R-22 systems",
+        "dimensions": {
+            "height": "33 in",
+            "depth": "30 in",
+            "width": "33 in",
+            "weight": "156 lbs"
+        },
+        "serviceValves": {
+            "vaporLine": "3/4 in",
+            "liquidLine": "3/8 in"
+        },
+        "refrigerantLines": {
+            "maxLength": "60 ft",
+            "maxVerticalChange": "60 ft",
+            "factoryCharge": "Includes 15 ft line set + smallest coil match"
+        },
+        "electrical": {
+            "voltage": "Per unit nameplate",
+            "phase": "Single Phase",
+            "frequency": "60 Hz",
+            "lowVoltage": "24 VAC"
+        },
+        "outdoorFan": "Axial Fan Motor",
+        "cabinet": "Weather-resistant steel",
+        "application": "Residential Air Conditioning"
     },
-    "serviceValves": {
-      "vaporLine": "3/4 in",
-      "liquidLine": "3/8 in"
+    "safetyWarnings": {
+        "Warning1": "https://files.catbox.moe/x7fn1q.png",
+        "Warning2": "https://files.catbox.moe/fuyyi9.png",
+        "Warning3": "https://files.catbox.moe/27ubti.png",
+        "Warning4": "https://files.catbox.moe/hvw4q9.png",
+        "TxtWarning": "This interactive troubleshooter is not made to help install a new 4TTR4037L1000A unit"
     },
-    "refrigerantLines": {
-      "maxLength": "60 ft",
-      "maxVerticalChange": "60 ft",
-      "factoryCharge": "Includes 15 ft line set + smallest coil match"
+    "specifications": {
+        "designSubcooling": "Per unit nameplate",
+        "chargingMethod": "Subcooling (above 55°F outdoor)",
+        "evacuationTarget": "350 microns (max 500 microns after 1 min)",
+        "lineSetAdders": {
+            "20ft": "3 oz",
+            "30ft": "9 oz",
+            "40ft": "15 oz",
+            "50ft": "21 oz",
+            "60ft": "27 oz"
+        },
+        "typicalPressures": {
+            "outdoor110F": {
+                "liquid": "450-455 PSI",
+                "suction": "149-157 PSI (at 71°F indoor wet bulb)"
+            },
+            "outdoor90F": {
+                "liquid": "420-425 PSI",
+                "suction": "135-149 PSI (at 71°F indoor wet bulb)"
+            }
+        }
     },
-    "electrical": {
-      "voltage": "Per unit nameplate",
-      "phase": "Single Phase",
-      "frequency": "60 Hz",
-      "lowVoltage": "24 VAC"
+    "userDiagnosisWizard": {
+        "start": {
+            "message": "Let’s figure out what your AC is doing. Answer honestly. Lying only hurts the AC.",
+            "question": "Is the outdoor unit doing ANYTHING?",
+            "options": {
+                "nothing_at_all": "no_power",
+                "fan_only": "fan_only",
+                "fan_and_compressor": "running_but_not_cooling",
+                "clicking_or_humming": "strange_noises"
+            }
+        },
+        "no_power": {
+            "message": "The outdoor unit is completely silent.",
+            "steps": [
+                {
+                    "question": "Is your thermostat set to COOL and below room temperature?",
+                    "yes": 2,
+                    "no": {
+                        "action": "Set thermostat correctly and wait 5 minutes",
+                        "end": true
+                    }
+                },
+                {
+                    "question": "Is the breaker labeled AC or HVAC tripped?",
+                    "yes": {
+                        "action": "Reset breaker ONCE. If it trips again, stop.",
+                        "result": "Likely electrical issue. Call for service."
+                    },
+                    "no": 3
+                },
+                {
+                    "question": "Is the outdoor disconnect switch ON?",
+                    "yes": {
+                        "result": "Unit has power but won’t start. Likely control or internal issue.",
+                        "recommendation": "Call for service"
+                    },
+                    "no": {
+                        "action": "Turn it ON",
+                        "note": "If it still does nothing, call for service"
+                    }
+                }
+            ]
+        },
+        "fan_only": {
+            "message": "The outdoor fan runs, but the AC is not cooling.",
+            "steps": [
+                {
+                    "question": "Is the air coming from vents inside warm or room temperature?",
+                    "yes": 2,
+                    "no": {
+                        "result": "Cooling works intermittently",
+                        "recommendation": "Monitor system"
+                    }
+                },
+                {
+                    "question": "Do you hear a loud hum or buzzing from the outdoor unit?",
+                    "yes": {
+                        "result": "Compressor is trying but failing",
+                        "danger": "Do NOT leave it running",
+                        "recommendation": "Shut system off and call service"
+                    },
+                    "no": {
+                        "result": "Compressor likely not starting",
+                        "recommendation": "Service required"
+                    }
+                }
+            ]
+        },
+        "running_but_not_cooling": {
+            "message": "The unit runs but the house is still hot. Rude.",
+            "steps": [
+                {
+                    "question": "Is airflow from vents weak?",
+                    "yes": {
+                        "action": "Check air filter. Replace if dirty.",
+                        "next": 2
+                    },
+                    "no": 2
+                },
+                {
+                    "question": "Is ice visible on indoor or outdoor pipes?",
+                    "yes": {
+                        "action": "Turn system OFF and let it thaw completely",
+                        "result": "Likely airflow or refrigerant issue",
+                        "recommendation": "Call for service"
+                    },
+                    "no": 3
+                },
+                {
+                    "question": "Is the outdoor unit very dirty or blocked by plants?",
+                    "yes": {
+                        "action": "Clear debris and gently rinse coil",
+                        "note": "Do NOT use pressure washer",
+                        "end": true
+                    },
+                    "no": {
+                        "result": "System likely low on refrigerant or internally restricted",
+                        "recommendation": "Professional service required"
+                    }
+                }
+            ]
+        },
+        "strange_noises": {
+            "message": "Your AC is making sounds it should not be making.",
+            "steps": [
+                {
+                    "question": "Is it clicking repeatedly every few minutes?",
+                    "yes": {
+                        "result": "System is trying to start and failing",
+                        "recommendation": "Turn OFF and call service"
+                    },
+                    "no": 2
+                },
+                {
+                    "question": "Is it humming loudly without starting?",
+                    "yes": {
+                        "danger": "This can destroy the compressor",
+                        "action": "Turn OFF immediately",
+                        "recommendation": "Service required"
+                    },
+                    "no": {
+                        "result": "Unidentified noise",
+                        "recommendation": "Inspection needed"
+                    }
+                }
+            ]
+        }
     },
-    "outdoorFan": "Axial Fan Motor",
-    "cabinet": "Weather-resistant steel",
-    "application": "Residential Air Conditioning"
-  },
-
-  "safetyWarnings": [
-    {
-    "Warning1": "https://files.catbox.moe/x7fn1q.png",
-    "Warning2": "https://files.catbox.moe/fuyyi9.png",
-    "Warning3": "https://files.catbox.moe/27ubti.png",
-    "Warning4": "https://files.catbox.moe/hvw4q9.png",
-    "TxtWarning": "This interactive troubleshooter is not made to help install a new 4TTR4037L1000A unit"
-    }
-  ],
-
-  "specifications": {
-    "designSubcooling": "Per unit nameplate",
-    "chargingMethod": "Subcooling (above 55°F outdoor)",
-    "evacuationTarget": "350 microns (max 500 microns after 1 min)",
-    "lineSetAdders": {
-      "20ft": "3 oz",
-      "30ft": "9 oz",
-      "40ft": "15 oz",
-      "50ft": "21 oz",
-      "60ft": "27 oz"
-    },
-    "typicalPressures": {
-      "outdoor110F": {
-        "liquid": "450-455 PSI",
-        "suction": "149-157 PSI (at 71°F indoor wet bulb)"
-      },
-      "outdoor90F": {
-        "liquid": "420-425 PSI",
-        "suction": "135-149 PSI (at 71°F indoor wet bulb)"
-      }
-    }
-  },
-
-  "userDiagnosisWizard": {
-  "start": {
-    "message": "Let’s figure out what your AC is doing. Answer honestly. Lying only hurts the AC.",
-    "question": "Is the outdoor unit doing ANYTHING?",
-    "options": {
-      "nothing_at_all": "no_power",
-      "fan_only": "fan_only",
-      "fan_and_compressor": "running_but_not_cooling",
-      "clicking_or_humming": "strange_noises"
-    }
-  },
-
-  "no_power": {
-    "message": "The outdoor unit is completely silent.",
-    "steps": [
-      {
-        "question": "Is your thermostat set to COOL and below room temperature?",
-        "yes": 2,
-        "no": {
-          "action": "Set thermostat correctly and wait 5 minutes",
-          "end": true
-        }
-      },
-      {
-        "question": "Is the breaker labeled AC or HVAC tripped?",
-        "yes": {
-          "action": "Reset breaker ONCE. If it trips again, stop.",
-          "result": "Likely electrical issue. Call for service."
-        },
-        "no": 3
-      },
-      {
-        "question": "Is the outdoor disconnect switch ON?",
-        "yes": {
-          "result": "Unit has power but won’t start. Likely control or internal issue.",
-          "recommendation": "Call for service"
-        },
-        "no": {
-          "action": "Turn it ON",
-          "note": "If it still does nothing, call for service"
-        }
-      }
-    ]
-  },
-
-  "fan_only": {
-    "message": "The outdoor fan runs, but the AC is not cooling.",
-    "steps": [
-      {
-        "question": "Is the air coming from vents inside warm or room temperature?",
-        "yes": 2,
-        "no": {
-          "result": "Cooling works intermittently",
-          "recommendation": "Monitor system"
-        }
-      },
-      {
-        "question": "Do you hear a loud hum or buzzing from the outdoor unit?",
-        "yes": {
-          "result": "Compressor is trying but failing",
-          "danger": "Do NOT leave it running",
-          "recommendation": "Shut system off and call service"
-        },
-        "no": {
-          "result": "Compressor likely not starting",
-          "recommendation": "Service required"
-        }
-      }
-    ]
-  },
-
-  "running_but_not_cooling": {
-    "message": "The unit runs but the house is still hot. Rude.",
-    "steps": [
-      {
-        "question": "Is airflow from vents weak?",
-        "yes": {
-          "action": "Check air filter. Replace if dirty.",
-          "next": 2
-        },
-        "no": 2
-      },
-      {
-        "question": "Is ice visible on indoor or outdoor pipes?",
-        "yes": {
-          "action": "Turn system OFF and let it thaw completely",
-          "result": "Likely airflow or refrigerant issue",
-          "recommendation": "Call for service"
-        },
-        "no": 3
-      },
-      {
-        "question": "Is the outdoor unit very dirty or blocked by plants?",
-        "yes": {
-          "action": "Clear debris and gently rinse coil",
-          "note": "Do NOT use pressure washer",
-          "end": true
-        },
-        "no": {
-          "result": "System likely low on refrigerant or internally restricted",
-          "recommendation": "Professional service required"
-        }
-      }
-    ]
-  },
-
-  "strange_noises": {
-    "message": "Your AC is making sounds it should not be making.",
-    "steps": [
-      {
-        "question": "Is it clicking repeatedly every few minutes?",
-        "yes": {
-          "result": "System is trying to start and failing",
-          "recommendation": "Turn OFF and call service"
-        },
-        "no": 2
-      },
-      {
-        "question": "Is it humming loudly without starting?",
-        "yes": {
-          "danger": "This can destroy the compressor",
-          "action": "Turn OFF immediately",
-          "recommendation": "Service required"
-        },
-        "no": {
-          "result": "Unidentified noise",
-          "recommendation": "Inspection needed"
-        }
-      }
-    ]
-  }
-}
-
     "no_power": {
-      "symptom": "Compressor and outdoor fan won't start",
-      "steps": [
-        {
-          "step": 1,
-          "check": "Disconnect switch at outdoor unit ON?",
-          "yes": "Step 2",
-          "no": "Turn ON. If temp <70°F wait 60 min for crankcase heater"
-        },
-        {
-          "step": 2,
-          "check": "Circuit breaker at panel ON?",
-          "yes": "Step 3",
-          "no": "Reset breaker. If trips again, check for short circuit"
-        },
-        {
-          "step": 3,
-          "check": "High voltage at contactor T1 & T2?",
-          "yes": "Step 4",
-          "no": "Check power supply, disconnect, wiring",
-          "safety": "DANGER - Live electrical components"
-        },
-        {
-          "step": 4,
-          "check": "24VAC at contactor coil?",
-          "yes": "Step 5",
-          "no": "Check transformer, fuse, thermostat wiring"
-        },
-        {
-          "step": 5,
-          "check": "Contactor contacts closed?",
-          "yes": "Go to: comp_no_start",
-          "no": "Replace contactor"
-        }
-      ],
-      "lowVoltageChecks": {
-        "transformerFuse": "Check 24VAC output and fuse continuity",
-        "thermostatTest": "Jumper R to Y at thermostat - if contactor closes, replace thermostat",
-        "wiringTest": "If jumper doesn't work, repair field wiring"
-      }
-    },
-
-    "comp_no_start": {
-      "symptom": "Compressor won't run but contactor is closed",
-      "prerequisite": "Verify contactor contacts are closed",
-      "steps": [
-        {
-          "step": 1,
-          "check": "Voltage at compressor C, S, R terminals?",
-          "yes": "Step 2",
-          "no": "Check wiring to compressor, verify contactor operation",
-          "safety": "DANGER - High voltage present"
-        },
-        {
-          "step": 2,
-          "check": "Resistance C to S and C to R (power OFF)",
-          "openCircuit": "Allow compressor to cool, retest. If still open, check R to S",
-          "normalResistance": "Step 3",
-          "safety": "Turn OFF all power before resistance checks"
-        },
-        {
-          "step": 3,
-          "check": "Resistance R to S (power OFF)",
-          "openCircuit": "Replace compressor - open windings",
-          "normalResistance": "Step 4"
-        },
-        {
-          "step": 4,
-          "check": "Locked rotor? (Check amps on C terminal)",
-          "lockedRotor": "Step 5",
-          "normalAmps": "Check start capacitor, relay, run capacitor"
-        },
-        {
-          "step": 5,
-          "check": "Start components & run capacitor good?",
-          "yes": "Replace compressor - mechanical failure",
-          "no": "Replace defective capacitor/relay, retest"
-        }
-      ]
-    },
-
-    "fan_no_start": {
-      "symptom": "Outdoor fan won't start",
-      "steps": [
-        {
-          "step": 1,
-          "check": "Voltage at fan motor terminals?",
-          "yes": "Step 2",
-          "no": "Check wiring, contactor pole",
-          "safety": "DANGER - Live electrical"
-        },
-        {
-          "step": 2,
-          "check": "Fan motor resistance (power OFF)",
-          "openCircuit": "Replace fan motor",
-          "normalResistance": "Step 3"
-        },
-        {
-          "step": 3,
-          "check": "Fan capacitor test",
-          "defective": "Replace capacitor",
-          "good": "Step 4"
-        },
-        {
-          "step": 4,
-          "check": "Fan blade spins freely? (power OFF)",
-          "binds": "Check for obstructions, damaged bearings",
-          "spinsFree": "Replace fan motor - internal failure"
-        }
-      ]
-    },
-
-    "comp_hums": {
-      "symptom": "Compressor hums but won't start - SERIOUS ISSUE",
-      "warning": "Do not leave energized for extended periods",
-      "steps": [
-        {
-          "step": 1,
-          "check": "Run capacitor test",
-          "defective": "Replace run capacitor, retest",
-          "good": "Step 2"
-        },
-        {
-          "step": 2,
-          "check": "Start capacitor & relay test (if equipped)",
-          "defective": "Replace start components, retest",
-          "good": "Step 3"
-        },
-        {
-          "step": 3,
-          "action": "Compressor stuck or seized",
-          "diagnosis": "Locked rotor - Replace compressor",
-          "note": "If compressor was off for extended period, may be stuck - try hard start kit first"
-        }
-      ]
-    },
-
-    "cycles_iol": {
-      "symptom": "Compressor cycles on Internal Overload",
-      "causes": [
-        "Low refrigerant charge",
-        "High head pressure",
-        "Defective run capacitor",
-        "Restricted outdoor airflow",
-        "Incorrect voltage",
-        "Inefficient compressor"
-      ],
-      "steps": [
-        {
-          "step": 1,
-          "check": "Supply voltage (with compressor running)",
-          "acceptable": "Within 10% of nameplate",
-          "low": "Correct power supply issue"
-        },
-        {
-          "step": 2,
-          "check": "Run capacitor",
-          "defective": "Replace capacitor",
-          "good": "Step 3"
-        },
-        {
-          "step": 3,
-          "check": "Outdoor coil clean? Adequate airflow?",
-          "restricted": "Clean coil, ensure 12 in clearance all sides, 5 ft above",
-          "clean": "Step 4"
-        },
-        {
-          "step": 4,
-          "check": "Operating pressures",
-          "highHead": "Go to: high_head",
-          "lowSuction": "Go to: low_suction",
-          "normal": "Step 5"
-        },
-        {
-          "step": 5,
-          "check": "Compressor amp draw",
-          "high": "Replace compressor - inefficient",
-          "normal": "Replace compressor - defective IOL"
-        }
-      ]
-    },
-
-    "poor_cooling": {
-      "symptom": "Unit runs but inadequate or no cooling",
-      "systematicDiagnosis": true,
-      "steps": [
-        {
-          "step": 1,
-          "check": "Indoor airflow adequate?",
-          "checkItems": [
-            "Air filter clean",
-            "Return grilles open",
-            "Supply registers open",
-            "Blower speed correct",
-            "No duct restrictions"
-          ],
-          "restricted": "Correct airflow restrictions",
-          "adequate": "Step 2"
-        },
-        {
-          "step": 2,
-          "check": "Outdoor airflow adequate?",
-          "checkItems": [
-            "Outdoor coil clean",
-            "Fan running correct direction (pulls through coil, discharges up)",
-            "12 in clearance to walls/shrubs",
-            "5 ft clearance above unit",
-            "No air recirculation"
-          ],
-          "restricted": "Clean coil, verify clearances",
-          "adequate": "Step 3"
-        },
-        {
-          "step": 3,
-          "action": "Measure operating parameters",
-          "measurements": {
-            "outdoorTemp": "Must be >55°F for accurate subcooling",
-            "indoorTemp": "70-80°F ideal",
-            "liquidLinePressure": "At outdoor service valve",
-            "liquidLineTemp": "At outdoor service valve",
-            "suctionPressure": "At outdoor service valve",
-            "suctionLineTemp": "At outdoor service valve"
-          },
-          "calculate": {
-            "subcooling": "Saturation temp (from liquid pressure) - Liquid line temp",
-            "superheat": "Suction line temp - Saturation temp (from suction pressure)"
-          },
-          "analysis": {
-            "lowSubcooling": "Undercharge - Go to: low_charge",
-            "highSubcooling": "Overcharge or restriction - Go to: overcharge",
-            "lowSuperheat": "TXV/EEV stuck open or overcharge",
-            "highSuperheat": "Undercharge or restriction"
-          }
-        }
-      ]
-    },
-
-    "low_charge": {
-      "symptom": "System undercharged",
-      "indicators": [
-        "Low subcooling",
-        "High superheat",
-        "Low suction pressure",
-        "Low discharge pressure"
-      ],
-      "steps": [
-        {
-          "step": 1,
-          "action": "Leak check entire system",
-          "method": "Electronic leak detector or bubble solution",
-          "checkPoints": [
-            "All brazed joints",
-            "Service valve caps",
-            "Service valve stems",
-            "Indoor coil connections",
-            "Filter drier connections"
-          ],
-          "leakFound": "Repair leak before adding refrigerant",
-          "noLeak": "Step 2"
-        },
-        {
-          "step": 2,
-          "action": "Calculate target subcooling",
-          "formula": "Design subcooling + Line length correction + Lift correction",
-          "example": {
-            "designSubcooling": "Per nameplate (typically 10-14°F)",
-            "lineLength30ft": "Add 2°F",
-            "lift20ft": "Add 1°F",
-            "targetSubcooling": "Design + 2 + 1 = Target"
-          }
-        },
-        {
-          "step": 3,
-          "action": "Add R-410A refrigerant using subcooling method",
-          "procedure": [
-            "Connect gauges and refrigerant cylinder",
-            "Add liquid R-410A slowly",
-            "Wait 20 minutes between additions for stabilization",
-            "Measure liquid line temp and pressure",
-            "Calculate subcooling",
-            "Continue until target subcooling achieved",
-            "Verify performance with pressure tables"
-          ],
-          "important": [
-            "Outdoor temp must be >55°F",
-            "Add refrigerant in LIQUID form for R-410A",
-            "Allow 20 min stabilization between adjustments"
-          ]
-        }
-      ]
-    },
-
-    "overcharge": {
-      "symptom": "System overcharged or liquid line restriction",
-      "indicators": ["High subcooling", "High discharge pressure"],
-      "steps": [
-        {
-          "step": 1,
-          "check": "Suction pressure",
-          "high": {
-            "diagnosis": "Overcharge",
-            "action": "Recover excess refrigerant to proper subcooling"
-          },
-          "low": {
-            "diagnosis": "Liquid line restriction",
-            "action": "Step 2"
-          }
-        },
-        {
-          "step": 2,
-          "check": "Liquid line restrictions",
-          "checkPoints": [
-            "Filter drier - most common",
-            "Kinked tubing",
-            "Liquid service valve not fully open",
-            "Debris in line"
-          ],
-          "method": "Feel temperature along liquid line - restriction causes temp drop",
-          "restrictionFound": "Replace filter drier or remove restriction",
-          "noRestriction": "Noncondensables - recover and recharge system"
-        }
-      ]
-    },
-
-    "high_head": {
-      "symptom": "Head pressure too high",
-      "causes": [
-        "Overcharge",
-        "Restricted outdoor airflow",
-        "Dirty outdoor coil",
-        "Air recirculation",
-        "Noncondensables",
-        "Fan not running/slow"
-      ],
-      "steps": [
-        {
-          "step": 1,
-          "check": "Outdoor fan operation",
-          "running": "Step 2",
-          "notRunning": "Go to: fan_no_start",
-          "runningSlow": "Check fan capacitor, motor, wiring"
-        },
-        {
-          "step": 2,
-          "check": "Outdoor coil and clearances",
-          "checkItems": [
-            "Clean coil thoroughly",
-            "12 in clearance to walls/shrubs",
-            "5 ft clearance above unit",
-            "No recirculation from nearby surfaces"
-          ],
-          "dirty": "Clean coil with coil cleaner",
-          "clean": "Step 3"
-        },
-        {
-          "step": 3,
-          "check": "Refrigerant charge (measure subcooling)",
-          "high": "Recover excess refrigerant",
-          "normal": "Step 4"
-        },
-        {
-          "step": 4,
-          "check": "Noncondensables test",
-          "method": "If head pressure high but liquid temp normal, noncondensables present",
-          "present": "Recover all refrigerant, evacuate to 350 microns, recharge with fresh R-410A"
-        }
-      ]
-    },
-
-    "low_head": {
-      "symptom": "Head pressure too low",
-      "causes": [
-        "Undercharge",
-        "Low outdoor ambient",
-        "Inefficient compressor",
-        "TXV stuck open"
-      ],
-      "steps": [
-        {
-          "step": 1,
-          "check": "Outdoor ambient temperature",
-          "below55F": "Normal for low ambient - cannot charge accurately below 55°F",
-          "above55F": "Step 2"
-        },
-        {
-          "step": 2,
-          "check": "Subcooling",
-          "low": "Go to: low_charge",
-          "normal": "Step 3"
-        },
-        {
-          "step": 3,
-          "check": "Compressor efficiency",
-          "method": "Measure amp draw - compare to nameplate",
-          "lowAmps": "Replace compressor - inefficient/worn",
-          "normalAmps": "Check TXV/EEV operation and superheat"
-        }
-      ]
-    },
-
-    "high_suction": {
-      "symptom": "Suction pressure too high",
-      "causes": [
-        "Overcharge",
-        "TXV/EEV stuck open",
-        "Excessive load",
-        "Inefficient compressor"
-      ],
-      "steps": [
-        {
-          "step": 1,
-          "check": "Superheat at indoor coil",
-          "low": "TXV stuck open or overcharge - check subcooling",
-          "normal": "Step 2"
-        },
-        {
-          "step": 2,
-          "check": "Excessive evaporator load",
-          "checkItems": [
-            "Windows/doors open",
-            "High indoor humidity",
-            "Oversized indoor unit",
-            "Undersized outdoor unit"
-          ],
-          "excessive": "Reduce load or consider larger unit",
-          "normal": "Step 3"
-        },
-        {
-          "step": 3,
-          "check": "Compressor efficiency",
-          "method": "Amp draw and temperature difference",
-          "inefficient": "Replace compressor"
-        }
-      ]
-    },
-
-    "low_suction": {
-      "symptom": "Suction pressure too low",
-      "causes": [
-        "Undercharge",
-        "Restricted indoor airflow",
-        "Restricted TXV/EEV",
-        "Liquid line restriction"
-      ],
-      "steps": [
-        {
-          "step": 1,
-          "check": "Indoor airflow",
-          "checkItems": [
-            "Dirty filter",
-            "Closed registers",
-            "Low blower speed",
-            "Dirty indoor coil"
-          ],
-          "restricted": "Correct airflow restrictions",
-          "adequate": "Step 2"
-        },
-        {
-          "step": 2,
-          "check": "Subcooling",
-          "low": "Go to: low_charge",
-          "high": "Restriction in liquid line or TXV",
-          "normal": "Check superheat"
-        },
-        {
-          "step": 3,
-          "check": "Superheat at indoor coil",
-          "high": "TXV restricted or undercharge",
-          "normal": "Check for restrictions in suction line"
-        }
-      ]
-    },
-
-    "coil_frost": {
-      "symptom": "Indoor coil frosting or icing",
-      "causes": [
-        "Restricted indoor airflow - MOST COMMON",
-        "Low refrigerant charge",
-        "TXV stuck open",
-        "Low outdoor ambient"
-      ],
-      "steps": [
-        {
-          "step": 1,
-          "action": "Turn off unit and allow coil to thaw completely"
-        },
-        {
-          "step": 2,
-          "check": "Indoor airflow",
-          "checkItems": [
-            "Replace dirty filter - CHECK FIRST",
-            "Open all registers",
-            "Verify correct blower speed",
-            "Check for kinked flexible ducts",
-            "Verify return air path adequate"
-          ],
-          "restricted": "Correct restrictions, restart unit",
-          "adequate": "Step 3"
-        },
-        {
-          "step": 3,
-          "check": "Refrigerant charge",
-          "method": "Measure subcooling (outdoor temp >55°F)",
-          "low": "Go to: low_charge",
-          "normal": "Step 4"
-        },
-        {
-          "step": 4,
-          "check": "Outdoor temperature",
-          "below60F": "Unit not designed for low ambient cooling - this is normal",
-          "above60F": "Check TXV/EEV operation - may be stuck open"
-        }
-      ]
-    },
-
-    "floodback": {
-      "symptom": "Liquid refrigerant floodback to compressor",
-      "indicators": [
-        "Frosted suction line back to compressor",
-        "Cold compressor crankcase",
-        "Oil foaming",
-        "Compressor damage over time"
-      ],
-      "causes": [
-        "TXV/EEV stuck open",
-        "Overcharge",
-        "Low heat load",
-        "Restricted indoor airflow"
-      ],
-      "steps": [
-        {
-          "step": 1,
-          "check": "Superheat at indoor coil",
-          "low": "TXV stuck open or overcharge",
-          "method": "Should be 8-12°F typically"
-        },
-        {
-          "step": 2,
-          "check": "Indoor airflow adequate?",
-          "restricted": "Correct airflow - low airflow reduces heat absorption",
-          "adequate": "Step 3"
-        },
-        {
-          "step": 3,
-          "check": "Refrigerant charge",
-          "method": "Measure subcooling",
-          "high": "Overcharge - recover excess refrigerant",
-          "normal": "TXV/EEV likely stuck open - check/replace"
-        }
-      ]
-    }
-  },
-
-  "chargingProcedure": {
-    "conditions": {
-      "outdoorTemp": "Must be above 55°F",
-      "indoorTemp": "70-80°F ideal",
-      "stabilizationTime": "20 minutes minimum after any adjustment"
-    },
-    "steps": [
-      {
-        "step": 1,
-        "action": "Calculate target subcooling",
-        "inputs": [
-          "Design subcooling from nameplate",
-          "Total line length",
-          "Vertical lift"
+        "symptom": "Compressor and outdoor fan won't start",
+        "steps": [
+            {
+                "step": 1,
+                "check": "Disconnect switch at outdoor unit ON?",
+                "yes": "Step 2",
+                "no": "Turn ON. If temp <70°F wait 60 min for crankcase heater"
+            },
+            {
+                "step": 2,
+                "check": "Circuit breaker at panel ON?",
+                "yes": "Step 3",
+                "no": "Reset breaker. If trips again, check for short circuit"
+            },
+            {
+                "step": 3,
+                "check": "High voltage at contactor T1 & T2?",
+                "yes": "Step 4",
+                "no": "Check power supply, disconnect, wiring",
+                "safety": "DANGER - Live electrical components"
+            },
+            {
+                "step": 4,
+                "check": "24VAC at contactor coil?",
+                "yes": "Step 5",
+                "no": "Check transformer, fuse, thermostat wiring"
+            },
+            {
+                "step": 5,
+                "check": "Contactor contacts closed?",
+                "yes": "Go to: comp_no_start",
+                "no": "Replace contactor"
+            }
         ],
-        "corrections": {
-          "lineLength30ft": "+2°F for 3 ton",
-          "lift20ft": "+1°F",
-          "combinedExample": "Design 12°F + 2°F + 1°F = 15°F target"
+        "lowVoltageChecks": {
+            "transformerFuse": "Check 24VAC output and fuse continuity",
+            "thermostatTest": "Jumper R to Y at thermostat - if contactor closes, replace thermostat",
+            "wiringTest": "If jumper doesn't work, repair field wiring"
         }
-      },
-      {
-        "step": 2,
-        "action": "Measure liquid line",
-        "measurements": [
-          "Liquid line temperature at outdoor service valve",
-          "Liquid line pressure at outdoor service valve"
+    },
+    "comp_no_start": {
+        "symptom": "Compressor won't run but contactor is closed",
+        "prerequisite": "Verify contactor contacts are closed",
+        "steps": [
+            {
+                "step": 1,
+                "check": "Voltage at compressor C, S, R terminals?",
+                "yes": "Step 2",
+                "no": "Check wiring to compressor, verify contactor operation",
+                "safety": "DANGER - High voltage present"
+            },
+            {
+                "step": 2,
+                "check": "Resistance C to S and C to R (power OFF)",
+                "openCircuit": "Allow compressor to cool, retest. If still open, check R to S",
+                "normalResistance": "Step 3",
+                "safety": "Turn OFF all power before resistance checks"
+            },
+            {
+                "step": 3,
+                "check": "Resistance R to S (power OFF)",
+                "openCircuit": "Replace compressor - open windings",
+                "normalResistance": "Step 4"
+            },
+            {
+                "step": 4,
+                "check": "Locked rotor? (Check amps on C terminal)",
+                "lockedRotor": "Step 5",
+                "normalAmps": "Check start capacitor, relay, run capacitor"
+            },
+            {
+                "step": 5,
+                "check": "Start components & run capacitor good?",
+                "yes": "Replace compressor - mechanical failure",
+                "no": "Replace defective capacitor/relay, retest"
+            }
         ]
-      },
-      {
-        "step": 3,
-        "action": "Calculate current subcooling",
-        "formula": "Saturation temp (from pressure chart) - Liquid line temp = Subcooling"
-      },
-      {
-        "step": 4,
-        "action": "Adjust refrigerant",
-        "tooLow": "Add liquid R-410A until target subcooling achieved",
-        "tooHigh": "Recover refrigerant until target subcooling achieved",
-        "note": "Wait 20 minutes between adjustments"
-      },
-      {
-        "step": 5,
-        "action": "Verify performance",
-        "check": "Compare pressures to tables in manual Section 15",
-        "record": [
-          "Outdoor ambient temp",
-          "Indoor ambient temp",
-          "Liquid line temp",
-          "Suction line temp",
-          "Liquid pressure",
-          "Suction pressure"
+    },
+    "fan_no_start": {
+        "symptom": "Outdoor fan won't start",
+        "steps": [
+            {
+                "step": 1,
+                "check": "Voltage at fan motor terminals?",
+                "yes": "Step 2",
+                "no": "Check wiring, contactor pole",
+                "safety": "DANGER - Live electrical"
+            },
+            {
+                "step": 2,
+                "check": "Fan motor resistance (power OFF)",
+                "openCircuit": "Replace fan motor",
+                "normalResistance": "Step 3"
+            },
+            {
+                "step": 3,
+                "check": "Fan capacitor test",
+                "defective": "Replace capacitor",
+                "good": "Step 4"
+            },
+            {
+                "step": 4,
+                "check": "Fan blade spins freely? (power OFF)",
+                "binds": "Check for obstructions, damaged bearings",
+                "spinsFree": "Replace fan motor - internal failure"
+            }
         ]
-      }
+    },
+    "comp_hums": {
+        "symptom": "Compressor hums but won't start - SERIOUS ISSUE",
+        "warning": "Do not leave energized for extended periods",
+        "steps": [
+            {
+                "step": 1,
+                "check": "Run capacitor test",
+                "defective": "Replace run capacitor, retest",
+                "good": "Step 2"
+            },
+            {
+                "step": 2,
+                "check": "Start capacitor & relay test (if equipped)",
+                "defective": "Replace start components, retest",
+                "good": "Step 3"
+            },
+            {
+                "step": 3,
+                "action": "Compressor stuck or seized",
+                "diagnosis": "Locked rotor - Replace compressor",
+                "note": "If compressor was off for extended period, may be stuck - try hard start kit first"
+            }
+        ]
+    },
+    "cycles_iol": {
+        "symptom": "Compressor cycles on Internal Overload",
+        "causes": [
+            "Low refrigerant charge",
+            "High head pressure",
+            "Defective run capacitor",
+            "Restricted outdoor airflow",
+            "Incorrect voltage",
+            "Inefficient compressor"
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "check": "Supply voltage (with compressor running)",
+                "acceptable": "Within 10% of nameplate",
+                "low": "Correct power supply issue"
+            },
+            {
+                "step": 2,
+                "check": "Run capacitor",
+                "defective": "Replace capacitor",
+                "good": "Step 3"
+            },
+            {
+                "step": 3,
+                "check": "Outdoor coil clean? Adequate airflow?",
+                "restricted": "Clean coil, ensure 12 in clearance all sides, 5 ft above",
+                "clean": "Step 4"
+            },
+            {
+                "step": 4,
+                "check": "Operating pressures",
+                "highHead": "Go to: high_head",
+                "lowSuction": "Go to: low_suction",
+                "normal": "Step 5"
+            },
+            {
+                "step": 5,
+                "check": "Compressor amp draw",
+                "high": "Replace compressor - inefficient",
+                "normal": "Replace compressor - defective IOL"
+            }
+        ]
+    },
+    "poor_cooling": {
+        "symptom": "Unit runs but inadequate or no cooling",
+        "systematicDiagnosis": true,
+        "steps": [
+            {
+                "step": 1,
+                "check": "Indoor airflow adequate?",
+                "checkItems": [
+                    "Air filter clean",
+                    "Return grilles open",
+                    "Supply registers open",
+                    "Blower speed correct",
+                    "No duct restrictions"
+                ],
+                "restricted": "Correct airflow restrictions",
+                "adequate": "Step 2"
+            },
+            {
+                "step": 2,
+                "check": "Outdoor airflow adequate?",
+                "checkItems": [
+                    "Outdoor coil clean",
+                    "Fan running correct direction (pulls through coil, discharges up)",
+                    "12 in clearance to walls/shrubs",
+                    "5 ft clearance above unit",
+                    "No air recirculation"
+                ],
+                "restricted": "Clean coil, verify clearances",
+                "adequate": "Step 3"
+            },
+            {
+                "step": 3,
+                "action": "Measure operating parameters",
+                "measurements": {
+                    "outdoorTemp": "Must be >55°F for accurate subcooling",
+                    "indoorTemp": "70-80°F ideal",
+                    "liquidLinePressure": "At outdoor service valve",
+                    "liquidLineTemp": "At outdoor service valve",
+                    "suctionPressure": "At outdoor service valve",
+                    "suctionLineTemp": "At outdoor service valve"
+                },
+                "calculate": {
+                    "subcooling": "Saturation temp (from liquid pressure) - Liquid line temp",
+                    "superheat": "Suction line temp - Saturation temp (from suction pressure)"
+                },
+                "analysis": {
+                    "lowSubcooling": "Undercharge - Go to: low_charge",
+                    "highSubcooling": "Overcharge or restriction - Go to: overcharge",
+                    "lowSuperheat": "TXV/EEV stuck open or overcharge",
+                    "highSuperheat": "Undercharge or restriction"
+                }
+            }
+        ]
+    },
+    "low_charge": {
+        "symptom": "System undercharged",
+        "indicators": [
+            "Low subcooling",
+            "High superheat",
+            "Low suction pressure",
+            "Low discharge pressure"
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "action": "Leak check entire system",
+                "method": "Electronic leak detector or bubble solution",
+                "checkPoints": [
+                    "All brazed joints",
+                    "Service valve caps",
+                    "Service valve stems",
+                    "Indoor coil connections",
+                    "Filter drier connections"
+                ],
+                "leakFound": "Repair leak before adding refrigerant",
+                "noLeak": "Step 2"
+            },
+            {
+                "step": 2,
+                "action": "Calculate target subcooling",
+                "formula": "Design subcooling + Line length correction + Lift correction",
+                "example": {
+                    "designSubcooling": "Per nameplate (typically 10-14°F)",
+                    "lineLength30ft": "Add 2°F",
+                    "lift20ft": "Add 1°F",
+                    "targetSubcooling": "Design + 2 + 1 = Target"
+                }
+            },
+            {
+                "step": 3,
+                "action": "Add R-410A refrigerant using subcooling method",
+                "procedure": [
+                    "Connect gauges and refrigerant cylinder",
+                    "Add liquid R-410A slowly",
+                    "Wait 20 minutes between additions for stabilization",
+                    "Measure liquid line temp and pressure",
+                    "Calculate subcooling",
+                    "Continue until target subcooling achieved",
+                    "Verify performance with pressure tables"
+                ],
+                "important": [
+                    "Outdoor temp must be >55°F",
+                    "Add refrigerant in LIQUID form for R-410A",
+                    "Allow 20 min stabilization between adjustments"
+                ]
+            }
+        ]
+    },
+    "overcharge": {
+        "symptom": "System overcharged or liquid line restriction",
+        "indicators": [
+            "High subcooling",
+            "High discharge pressure"
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "check": "Suction pressure",
+                "high": {
+                    "diagnosis": "Overcharge",
+                    "action": "Recover excess refrigerant to proper subcooling"
+                },
+                "low": {
+                    "diagnosis": "Liquid line restriction",
+                    "action": "Step 2"
+                }
+            },
+            {
+                "step": 2,
+                "check": "Liquid line restrictions",
+                "checkPoints": [
+                    "Filter drier - most common",
+                    "Kinked tubing",
+                    "Liquid service valve not fully open",
+                    "Debris in line"
+                ],
+                "method": "Feel temperature along liquid line - restriction causes temp drop",
+                "restrictionFound": "Replace filter drier or remove restriction",
+                "noRestriction": "Noncondensables - recover and recharge system"
+            }
+        ]
+    },
+    "high_head": {
+        "symptom": "Head pressure too high",
+        "causes": [
+            "Overcharge",
+            "Restricted outdoor airflow",
+            "Dirty outdoor coil",
+            "Air recirculation",
+            "Noncondensables",
+            "Fan not running/slow"
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "check": "Outdoor fan operation",
+                "running": "Step 2",
+                "notRunning": "Go to: fan_no_start",
+                "runningSlow": "Check fan capacitor, motor, wiring"
+            },
+            {
+                "step": 2,
+                "check": "Outdoor coil and clearances",
+                "checkItems": [
+                    "Clean coil thoroughly",
+                    "12 in clearance to walls/shrubs",
+                    "5 ft clearance above unit",
+                    "No recirculation from nearby surfaces"
+                ],
+                "dirty": "Clean coil with coil cleaner",
+                "clean": "Step 3"
+            },
+            {
+                "step": 3,
+                "check": "Refrigerant charge (measure subcooling)",
+                "high": "Recover excess refrigerant",
+                "normal": "Step 4"
+            },
+            {
+                "step": 4,
+                "check": "Noncondensables test",
+                "method": "If head pressure high but liquid temp normal, noncondensables present",
+                "present": "Recover all refrigerant, evacuate to 350 microns, recharge with fresh R-410A"
+            }
+        ]
+    },
+    "low_head": {
+        "symptom": "Head pressure too low",
+        "causes": [
+            "Undercharge",
+            "Low outdoor ambient",
+            "Inefficient compressor",
+            "TXV stuck open"
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "check": "Outdoor ambient temperature",
+                "below55F": "Normal for low ambient - cannot charge accurately below 55°F",
+                "above55F": "Step 2"
+            },
+            {
+                "step": 2,
+                "check": "Subcooling",
+                "low": "Go to: low_charge",
+                "normal": "Step 3"
+            },
+            {
+                "step": 3,
+                "check": "Compressor efficiency",
+                "method": "Measure amp draw - compare to nameplate",
+                "lowAmps": "Replace compressor - inefficient/worn",
+                "normalAmps": "Check TXV/EEV operation and superheat"
+            }
+        ]
+    },
+    "high_suction": {
+        "symptom": "Suction pressure too high",
+        "causes": [
+            "Overcharge",
+            "TXV/EEV stuck open",
+            "Excessive load",
+            "Inefficient compressor"
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "check": "Superheat at indoor coil",
+                "low": "TXV stuck open or overcharge - check subcooling",
+                "normal": "Step 2"
+            },
+            {
+                "step": 2,
+                "check": "Excessive evaporator load",
+                "checkItems": [
+                    "Windows/doors open",
+                    "High indoor humidity",
+                    "Oversized indoor unit",
+                    "Undersized outdoor unit"
+                ],
+                "excessive": "Reduce load or consider larger unit",
+                "normal": "Step 3"
+            },
+            {
+                "step": 3,
+                "check": "Compressor efficiency",
+                "method": "Amp draw and temperature difference",
+                "inefficient": "Replace compressor"
+            }
+        ]
+    },
+    "low_suction": {
+        "symptom": "Suction pressure too low",
+        "causes": [
+            "Undercharge",
+            "Restricted indoor airflow",
+            "Restricted TXV/EEV",
+            "Liquid line restriction"
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "check": "Indoor airflow",
+                "checkItems": [
+                    "Dirty filter",
+                    "Closed registers",
+                    "Low blower speed",
+                    "Dirty indoor coil"
+                ],
+                "restricted": "Correct airflow restrictions",
+                "adequate": "Step 2"
+            },
+            {
+                "step": 2,
+                "check": "Subcooling",
+                "low": "Go to: low_charge",
+                "high": "Restriction in liquid line or TXV",
+                "normal": "Check superheat"
+            },
+            {
+                "step": 3,
+                "check": "Superheat at indoor coil",
+                "high": "TXV restricted or undercharge",
+                "normal": "Check for restrictions in suction line"
+            }
+        ]
+    },
+    "coil_frost": {
+        "symptom": "Indoor coil frosting or icing",
+        "causes": [
+            "Restricted indoor airflow - MOST COMMON",
+            "Low refrigerant charge",
+            "TXV stuck open",
+            "Low outdoor ambient"
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "action": "Turn off unit and allow coil to thaw completely"
+            },
+            {
+                "step": 2,
+                "check": "Indoor airflow",
+                "checkItems": [
+                    "Replace dirty filter - CHECK FIRST",
+                    "Open all registers",
+                    "Verify correct blower speed",
+                    "Check for kinked flexible ducts",
+                    "Verify return air path adequate"
+                ],
+                "restricted": "Correct restrictions, restart unit",
+                "adequate": "Step 3"
+            },
+            {
+                "step": 3,
+                "check": "Refrigerant charge",
+                "method": "Measure subcooling (outdoor temp >55°F)",
+                "low": "Go to: low_charge",
+                "normal": "Step 4"
+            },
+            {
+                "step": 4,
+                "check": "Outdoor temperature",
+                "below60F": "Unit not designed for low ambient cooling - this is normal",
+                "above60F": "Check TXV/EEV operation - may be stuck open"
+            }
+        ]
+    },
+    "floodback": {
+        "symptom": "Liquid refrigerant floodback to compressor",
+        "indicators": [
+            "Frosted suction line back to compressor",
+            "Cold compressor crankcase",
+            "Oil foaming",
+            "Compressor damage over time"
+        ],
+        "causes": [
+            "TXV/EEV stuck open",
+            "Overcharge",
+            "Low heat load",
+            "Restricted indoor airflow"
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "check": "Superheat at indoor coil",
+                "low": "TXV stuck open or overcharge",
+                "method": "Should be 8-12°F typically"
+            },
+            {
+                "step": 2,
+                "check": "Indoor airflow adequate?",
+                "restricted": "Correct airflow - low airflow reduces heat absorption",
+                "adequate": "Step 3"
+            },
+            {
+                "step": 3,
+                "check": "Refrigerant charge",
+                "method": "Measure subcooling",
+                "high": "Overcharge - recover excess refrigerant",
+                "normal": "TXV/EEV likely stuck open - check/replace"
+            }
+        ]
+    },
+    "chargingProcedure": {
+        "conditions": {
+            "outdoorTemp": "Must be above 55°F",
+            "indoorTemp": "70-80°F ideal",
+            "stabilizationTime": "20 minutes minimum after any adjustment"
+        },
+        "steps": [
+            {
+                "step": 1,
+                "action": "Calculate target subcooling",
+                "inputs": [
+                    "Design subcooling from nameplate",
+                    "Total line length",
+                    "Vertical lift"
+                ],
+                "corrections": {
+                    "lineLength30ft": "+2°F for 3 ton",
+                    "lift20ft": "+1°F",
+                    "combinedExample": "Design 12°F + 2°F + 1°F = 15°F target"
+                }
+            },
+            {
+                "step": 2,
+                "action": "Measure liquid line",
+                "measurements": [
+                    "Liquid line temperature at outdoor service valve",
+                    "Liquid line pressure at outdoor service valve"
+                ]
+            },
+            {
+                "step": 3,
+                "action": "Calculate current subcooling",
+                "formula": "Saturation temp (from pressure chart) - Liquid line temp = Subcooling"
+            },
+            {
+                "step": 4,
+                "action": "Adjust refrigerant",
+                "tooLow": "Add liquid R-410A until target subcooling achieved",
+                "tooHigh": "Recover refrigerant until target subcooling achieved",
+                "note": "Wait 20 minutes between adjustments"
+            },
+            {
+                "step": 5,
+                "action": "Verify performance",
+                "check": "Compare pressures to tables in manual Section 15",
+                "record": [
+                    "Outdoor ambient temp",
+                    "Indoor ambient temp",
+                    "Liquid line temp",
+                    "Suction line temp",
+                    "Liquid pressure",
+                    "Suction pressure"
+                ]
+            }
+        ]
+    },
+    "maintenanceChecklist": [
+        {
+            "item": "Leak check refrigerant lines",
+            "frequency": "Installation and annually"
+        },
+        {
+            "item": "Verify suction line insulation intact",
+            "frequency": "Installation and annually"
+        },
+        {
+            "item": "Verify refrigerant lines properly secured and isolated",
+            "frequency": "Installation and annually"
+        },
+        {
+            "item": "Check electrical connections tight",
+            "frequency": "Installation and annually"
+        },
+        {
+            "item": "Observe outdoor fan for clearance and smooth operation",
+            "frequency": "Installation and each service call"
+        },
+        {
+            "item": "Clean outdoor coil",
+            "frequency": "Annually or as needed"
+        },
+        {
+            "item": "Check service valve caps tight",
+            "frequency": "After any service - finger tight plus 1/6 turn"
+        },
+        {
+            "item": "Verify proper clearances maintained",
+            "frequency": "Annually - 12 in sides, 5 ft top"
+        }
+    ],
+    "commonMistakes": [
+        {
+            "mistake": "Opening liquid service valve too far",
+            "consequence": "Abrupt release of charge, property damage, injury",
+            "correct": "Turn counterclockwise until stem JUST touches rolled edge (~5 turns)"
+        },
+        {
+            "mistake": "Charging below 55°F outdoor temperature",
+            "consequence": "Inaccurate charge, system damage",
+            "correct": "Only charge using subcooling when outdoor temp >55°F"
+        },
+        {
+            "mistake": "Not allowing stabilization time",
+            "consequence": "Inaccurate measurements, improper charge",
+            "correct": "Wait minimum 20 minutes after any adjustment"
+        },
+        {
+            "mistake": "Adding refrigerant to leaking system",
+            "consequence": "Wasted refrigerant, continued failure",
+            "correct": "Always repair leak before adding refrigerant"
+        },
+        {
+            "mistake": "Not insulating vapor line",
+            "consequence": "Reduced efficiency, possible condensation",
+            "correct": "Always insulate vapor line completely"
+        },
+        {
+            "mistake": "Brazing without nitrogen purge",
+            "consequence": "Internal oxidation, system contamination",
+            "correct": "Always purge with dry nitrogen during brazing"
+        },
+        {
+            "mistake": "Not evacuating to proper level",
+            "consequence": "Moisture in system, compressor failure",
+            "correct": "Evacuate to 350 microns minimum"
+        },
+        {
+            "mistake": "Using R-22 tools for R-410A",
+            "consequence": "Equipment failure, safety hazard",
+            "correct": "Use only R-410A rated tools and gauges"
+        }
     ]
-  },
-
-  "maintenanceChecklist": [
-    {
-      "item": "Leak check refrigerant lines",
-      "frequency": "Installation and annually"
-    },
-    {
-      "item": "Verify suction line insulation intact",
-      "frequency": "Installation and annually"
-    },
-    {
-      "item": "Verify refrigerant lines properly secured and isolated",
-      "frequency": "Installation and annually"
-    },
-    {
-      "item": "Check electrical connections tight",
-      "frequency": "Installation and annually"
-    },
-    {
-      "item": "Observe outdoor fan for clearance and smooth operation",
-      "frequency": "Installation and each service call"
-    },
-    {
-      "item": "Clean outdoor coil",
-      "frequency": "Annually or as needed"
-    },
-    {
-      "item": "Check service valve caps tight",
-      "frequency": "After any service - finger tight plus 1/6 turn"
-    },
-    {
-      "item": "Verify proper clearances maintained",
-      "frequency": "Annually - 12 in sides, 5 ft top"
-    }
-  ],
-
-  "commonMistakes": [
-    {
-      "mistake": "Opening liquid service valve too far",
-      "consequence": "Abrupt release of charge, property damage, injury",
-      "correct": "Turn counterclockwise until stem JUST touches rolled edge (~5 turns)"
-    },
-    {
-      "mistake": "Charging below 55°F outdoor temperature",
-      "consequence": "Inaccurate charge, system damage",
-      "correct": "Only charge using subcooling when outdoor temp >55°F"
-    },
-    {
-      "mistake": "Not allowing stabilization time",
-      "consequence": "Inaccurate measurements, improper charge",
-      "correct": "Wait minimum 20 minutes after any adjustment"
-    },
-    {
-      "mistake": "Adding refrigerant to leaking system",
-      "consequence": "Wasted refrigerant, continued failure",
-      "correct": "Always repair leak before adding refrigerant"
-    },
-    {
-      "mistake": "Not insulating vapor line",
-      "consequence": "Reduced efficiency, possible condensation",
-      "correct": "Always insulate vapor line completely"
-    },
-    {
-      "mistake": "Brazing without nitrogen purge",
-      "consequence": "Internal oxidation, system contamination",
-      "correct": "Always purge with dry nitrogen during brazing"
-    },
-    {
-      "mistake": "Not evacuating to proper level",
-      "consequence": "Moisture in system, compressor failure",
-      "correct": "Evacuate to 350 microns minimum"
-    },
-    {
-      "mistake": "Using R-22 tools for R-410A",
-      "consequence": "Equipment failure, safety hazard",
-      "correct": "Use only R-410A rated tools and gauges"
-    }
-  ]
 }
