@@ -38,13 +38,13 @@
   },
 
   "safetyWarnings": [
-    }
+    {
     "Warning1": "https://files.catbox.moe/x7fn1q.png",
     "Warning2": "https://files.catbox.moe/fuyyi9.png",
     "Warning3": "https://files.catbox.moe/27ubti.png",
     "Warning4": "https://files.catbox.moe/hvw4q9.png",
     "TxtWarning": "This interactive troubleshooter is not made to help install a new 4TTR4037L1000A unit"
-    {
+    }
   ],
 
   "specifications": {
